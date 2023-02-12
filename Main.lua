@@ -45,7 +45,7 @@ PlayerSection:NewSlider("Tốc độ chạy lũ", "Lũ kìa !", 500, 16, functio
     game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
 end)
 
-PlayerSection:NewSlider("Bay cao nào nhảy cao nào", "Lũ kìa !", 500, 16, function(j) -- 500 (MaxValue) | 0 (MinValue)
+PlayerSection:NewSlider("Baycaonhảycaonào", "Lũ kìa !", 500, 16, function(j) -- 500 (MaxValue) | 0 (MinValue)
     game.Players.LocalPlayer.Character.Humanoid.JumpPower = j
 end)
 
