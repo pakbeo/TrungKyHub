@@ -34,7 +34,7 @@ HubsSection:NewButton("Zen Hub - Blox Fruit", "Has Key", function()
 end)
 
 HubsSection:NewButton("Trung Ky Hub ( Ren ) - Blox Fruit", "Has Key", function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/Kaizenofficiall/ZenHub/main/Loader'))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/pakbeo/Bl-FruitTrungKy/main/Main.lua"))()
 end)
 
 --LOCAL PLAYER
