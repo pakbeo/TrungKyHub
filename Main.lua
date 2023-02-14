@@ -1,64 +1,93 @@
-local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Trung Ky Hub", "BloodTheme")
+local Rayfield = loadstring(game:HttpGet('https://raw.githubusercontent.com/shlexware/Rayfield/main/source'))()
+local Window = Rayfield:CreateWindow({
+	Name = "Trung Ky Hub",
+	LoadingTitle = "Trung Ky Hub",
+	LoadingSubtitle = "by Nam",
+	ConfigurationSaving = {
+	   Enabled = true,
+	   FolderName = TTH, -- Create a custom folder for your hub/game
+	   FileName = "TTH"
+	},
+	Discord = {
+	   Enabled = true,
+	   Invite = "Sugarbaes", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD.
+	   RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+	},
+	KeySystem = true, -- Set this to true to use our key system
+	KeySettings = {
+	   Title = "Trung Ky Hub",
+	   Subtitle = "Key System",
+	   Note = "Join the discord (discord.gg/sugarbaes)",
+	   FileName = "TTHKey",
+	   SaveKey = true,
+	   GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+	   Key = "https://pastebin.com/raw/FTEi7fZ9"
+	}
+ })
 
---MAIN
-local Main = Window:NewTab("Main")
-local ScriptsSection = Main:NewSection("Scripts")
+ local MainTab = Window:CreateTab("Main", 4483362458) -- Title, Image
 
-ScriptsSection:NewButton("Neva Hub - Blox Fruit", "This Hub works on blox fruits and idk", function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/VEZ2/NEVAHUB/main/2'))()
-end)
+ local Section = MainTab:CreateSection("Sức Mạnh Trung Kỳ")
 
-ScriptsSection:NewButton("Prison life Hub", "A script for a old game", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Denverrz/scripts/master/PRISONWARE_v1.3.txt"))();
-end)
+ local Slider = MainTab:CreateSlider({
+	Name = "Tốc độ chạy lũ",
+	Range = {0, 500},
+	Increment = 10,
+	Suffix = "Speed",
+	CurrentValue = 10,
+	Flag = "S1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(S1)
+		game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = S1
+	end,
+ })
 
-ScriptsSection:NewButton("BlackTrap ( Ninja leg - PSX)", "Works only on ninja legends and PSX", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/BdvUGb2q"))()
-end)
+ local Slider = MainTab:CreateSlider({
+	Name = "Bay cao nào nhảy cao nào",
+	Range = {0, 250},
+	Increment = 10,
+	Suffix = "Jump Power",
+	CurrentValue = 10,
+	Flag = "J1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(J1)
+		game.Players.LocalPlayer.Character.Humanoid.JumpPower = J1
+	end,
+ })
+ local Toggle = MainTab:CreateToggle({
+	Name = "Siêu Trung Kỳ",
+	CurrentValue = false,
+	Flag = "STT1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+	Callback = function(STT1)
+		if STT1 then
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 120
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = 120
+		else
+			game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
+			game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
+		end
+	end,
+ })
 
-ScriptsSection:NewButton("Dex - Arsenal", "A arsenal script", function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/HonestlyDex/DexHub/main/V3.lua"))()
-end)
+ -- HUBS
 
-ScriptsSection:NewButton("Arsenal Lean - Arsenal", "A arsenal script", function()
-   loadstring(game:HttpGet("https://raw.githubusercontent.com/KeoneGithub/KeoneGithub/main/Arsenal",true))()
-end)
+ local Hubs = Window:CreateTab("Hubs", 4483362458) -- Title, Image
 
---HUBS
-local Hubs = Window:NewTab("Hubs")
-local HubsSection = Hubs:NewSection("Hubs")
+ local Hub1 = Hubs:CreateButton({
+	Name = "Trung Ky Hub (Ren) - Blox Fruits",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/pakbeo/Bl-FruitTrungKy/main/Main.lua"))()
+	end,
+ })
 
-HubsSection:NewButton("Zen Hub - Blox Fruit", "Has Key", function()
-    loadstring(game:HttpGet('https://raw.githubusercontent.com/Kaizenofficiall/ZenHub/main/Loader'))()
-end)
+ local Hub2 = Hubs:CreateButton({
+	Name = "Zen Hub - Blox Fruits",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/Kaizenofficiall/ZenHub/main/Loader'))()
+	end,
+ })
 
-HubsSection:NewButton("Trung Ky Hub ( Ren ) - Blox Fruit", "Sieu trung ky", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/pakbeo/Bl-FruitTrungKy/main/Main.lua"))()
-end)
-
---LOCAL PLAYER
-local Player = Window:NewTab("Player")
-local PlayerSection = Player:NewSection("Player")
-
-PlayerSection:NewSlider("Tốc độ chạy lũ", "Lũ kìa !", 500, 16, function(s) -- 500 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
-end)
-
-PlayerSection:NewSlider("Baycaonhảycaonào", "Lũ kìa !", 500, 16, function(j) -- 500 (MaxValue) | 0 (MinValue)
-    game.Players.LocalPlayer.Character.Humanoid.JumpPower = j
-end)
-
-PlayerSection:NewButton("FE Flip", "Z để nhảy, X để nhảy ngược lại", function()
-    loadstring(game:HttpGet("https://pastebin.com/raw/xi23b40Y"))()
-end)
-
-PlayerSection:NewToggle("SIÊU TRUNG KỲ", "Chạy lũ đi", function(state)
-    if state then
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 120
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 120
-    else
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = 50
-    end
-end)
+ local Hub3 = Hubs:CreateButton({
+	Name = "Neva Hub - Blox Fruits",
+	Callback = function()
+		loadstring(game:HttpGet('https://raw.githubusercontent.com/VEZ2/NEVAHUB/main/2'))()
+	end,
+ })
